@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php 
+        require("connexion.php");
+        session_start();
+        if(!isset($_SESSION["id"])){
+            header("Location:index.php");
+            exit();
+        }
+        else{
+
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -42,26 +52,27 @@
 
 
     ul {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    }
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    ul li {
-    list-style: none;
-    }
+ul li {
+  list-style: none;
+}
 
-    ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    display: block;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 30px;
-    }
+ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
 
     ul li:hover {
     transform: scale(1.05);
@@ -161,56 +172,117 @@ select {
     border: none;
     border-radius: 20px;
 }
-table{
-    margin-top:10px;
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-        th{
-            background-color:black;
-            font-size:large;
-            color:white;
-            padding:10px;
-        }
-        td{
-            border-top:1px solid black;
-            background-color:#c8daef;
-            text-align:center;
-            padding:10px;
-            font-size:16px;
-            font-weight:bold;
-        }
-        #categg{
-            height:35px;
-            width: 220px;
-        }
-        #welcome{
-            font-size:50px;
-            text-align:center;
-            margin-bottom:50px;
-        }
-        #add{
-            text-decoration:none;
-            background-color : darkblue;
-            color:white;
-            width: 15%;
-            padding:10px;
-            text-align:center;
-            margin:30px;
-            font-size:large;
-            border-radius:10px;
-        }
-        
+
+th {
+  background-color: #424242;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+td {
+  border-top: 1px solid #e4e4e4;
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #e1f5fe;
+}
+
+td img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+td p {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+#enstock {
+  color: #059212;
+  background-color: #e8f8e8;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+#epuisé {
+  color: #e74c3c;
+  background-color: #f9e6e6;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+td a {
+  color: #2d3e50;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+td a:hover {
+  color: #229799;
+}
+
+td a:active {
+  color: #0a6b5d;
+}
+
+#welcome {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#add {
+  text-decoration: none;
+  background-color: #229799;
+  color: white;
+  width: 15%;
+  padding: 10px;
+  text-align: center;
+  margin: 30px;
+  font-size: large;
+  border-radius: 10px;
+}
+@media (max-width: 700px) {
+  aside {
+    width: 150px;
+    height: 100vh;
+  }
+  main {
+    margin-left: 160px;
+    padding: 20px;
+  }
+  ul li a {
+    font-size: 0.9rem;
+    margin:5px
+  }
+  #add {
+  width: 90%;
+  padding: 10px;
+  
+}
+}
     </style>
 </head>
-<?php 
-        require("connexion.php");
-        session_start();
-        if(!isset($_SESSION["id"])){
-            header("Location:index.php");
-            exit();
-        }
-        else{
-
-?>
 <body>
 <aside>
     <h2>Gestion Stock et Produit</h2>
@@ -252,8 +324,7 @@ table{
         
         }
         ?></h1>
-        <h2 id="welcome"><i  style='font-size:45px' class="fa-solid fa-list"></i>
-        Categories</h2>
+        <h2 id="welcome">Categories</h2>
         <a href="addcategorie.php" id="add">Ajouter une Categorie</a>        
         <table>
             <tr>

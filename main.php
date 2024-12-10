@@ -43,10 +43,10 @@ h2 {
 
 
 ul {
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
 
 ul li {
@@ -61,6 +61,7 @@ ul li a {
   padding: 10px;
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
 }
 
 ul li:hover {

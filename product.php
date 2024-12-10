@@ -1,112 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <?php 
+        require("connexion.php");
+        session_start();
+        if(!isset($_SESSION["id"])){
+            header("Location:index.php");
+            exit();
+        }
+        else{
+          
+          ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/050ece2bbf.js" crossorigin="anonymous"></script>
-        <style>
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  background-color: #f1f7ff;
-  min-height: 100vh;
-  margin: 0;
-  font-size: 16px;
-}
-
-aside {
-  width: 250px;
-  background-color: #424242;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  position: fixed;
-  height: 100vh;
-  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-
-h2 {
-  padding-top: 30px;
-  padding-bottom: 10px;
-  font-size: 1.8rem;
-}
-
-
-ul {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-ul li {
-  list-style: none;
-}
-
-ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.2rem;
-  display: block;
-  padding: 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 30px;
-}
-
-ul li:hover {
-  transform: scale(1.05);
-}
-
-ul li a:hover {
-  background-color: #229799;
-}
-
-/* Icon styles */
-i {
-  font-size: 1.5rem;
-}
-
-#out {
-  text-decoration: none;
-  color: white;
-  background-color: #e74c3c;
-  padding: 12px;
-  border-radius: 20px;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  width: 80%;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-#out:hover {
-  background-color: #c0392b;
-}
-
-main {
-  margin-left: 260px;
-  padding: 30px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-main i {
-  font-size: 25px;
-  margin: 10px;
-}
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+          }
+          
+          body {
+            display: flex;
+            background-color: #f1f7ff;
+            min-height: 100vh;
+            margin: 0;
+            font-size: 16px;
+          }
+          
+          aside {
+            width: 250px;
+            background-color: #424242;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+          }
+          
+          
+          h2 {
+            padding-top: 30px;
+            padding-bottom: 10px;
+            font-size: 1.8rem;
+          }
+          
+          
+          ul {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          
+          ul li {
+            list-style: none;
+          }
+          
+          ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+          }
+          
+          ul li:hover {
+            transform: scale(1.05);
+          }
+          
+          ul li a:hover {
+            background-color: #229799;
+          }
+          
+          /* Icon styles */
+          i {
+            font-size: 1.5rem;
+          }
+          
+          #out {
+            text-decoration: none;
+            color: white;
+            background-color: #e74c3c;
+            padding: 12px;
+            border-radius: 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            width: 80%;
+            text-align: center;
+            transition: background-color 0.3s ease;
+          }
+          
+          #out:hover {
+            background-color: #c0392b;
+          }
+          
+          main {
+            margin-left: 260px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+          }
+          main i {
+            font-size: 25px;
+            margin: 10px;
+          }
 
 h1 {
   text-align: right;
@@ -179,7 +189,7 @@ th {
   color: white;
   font-size: 1.1rem;
   padding: 12px;
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -263,30 +273,84 @@ td a:active {
 #enstock {
   color: #059212;
 }
+@media (max-width: 1200px) {
+  aside {
+    width: 200px;
+  }
+  main {
+    margin-left: 210px;
+  }
+}
+
+@media (max-width: 900px) {
+  aside {
+    width: 180px;
+  }
+  main {
+    margin-left: 190px;
+  }
+  td:nth-child(3), th:nth-child(3),  /* Description */
+  td:nth-child(6), th:nth-child(6),  /* Fornisseur */
+  td:nth-child(7), th:nth-child(7) { /* Categorie */
+    display: none;
+}
+
 @media (max-width: 700px) {
   aside {
     width: 150px;
     height: 100vh;
   }
-  aside ul li a{
-    font-size: 15px;
+  main {
+    margin-left: 160px;
+    padding: 20px;
+  }
+  ul li a {
+    font-size: 0.9rem;
+    margin:1px
   }
   
+}
 
+@media (max-width: 600px) {
+  aside {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    position: relative;
+  }
+  ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  ul li {
+    margin: 10px;
+  }
+  main {
+    margin: 0;
+    padding: 15px;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  #add, #search, #out {
+    width: 100%;
+    padding: 8px;
+  }
+}
 
+@media (max-width: 480px) {
+  th, td {
+    padding: 8px;
+  }
+  h2, h1, h3 {
+    font-size: 1.5rem;
+  }
 }
     </style>
 </head>
-<?php 
-        require("connexion.php");
-        session_start();
-        if(!isset($_SESSION["id"])){
-            header("Location:index.php");
-            exit();
-        }
-        else{
 
-?>
 <body>
 <aside>
     <h2>Gestion Stock et Produit</h2>
