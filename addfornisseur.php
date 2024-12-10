@@ -143,9 +143,6 @@
             margin-left:20%;
             font-size:large;
         }
-        div{
-
-        }
         .back{
             display:flex;
             width: 25%;

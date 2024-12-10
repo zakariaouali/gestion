@@ -6,183 +6,275 @@
     <title>Document</title>
     <script src="https://kit.fontawesome.com/050ece2bbf.js" crossorigin="anonymous"></script>
         <style>
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-        body{
-            display: flex;    
-            background-color:#dbe5f7
-        }
-        i{
-            font-size: X-large;
-        }
-        aside{
-            width: 20%;
-            height: 200vh;
-            background-color: #15243c;
-            color: white;
-            text-align: center;
-        }
-        h2{
-            padding-top: 30px;
-            padding-bottom: 10px;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
 
-        }
-        ul li a{
-            text-decoration: none;
-            color: white;
-            font-size: large;
-        }
-        ul{
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-        ul li:hover{
-            width: 100%;
-            background-color: #1f66ff;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-        #house{
-            position: absolute;
-            left: 20px;
-            top: 160px ;
-        }
-        #produit{
-            position: absolute;
-            left: 20px;
-            top: 245px;
-        }
-        #cate{
-            position: absolute;
-            left: 20px;
-            top: 325px;
-        }
-        #forn{
-            position: absolute;
-            left: 20px;
-            top: 397px;
-        }
-        #stock{
-            position: absolute;
-            left: 17px;
-            top: 470px;
-        }
-        #selected{
-            width: 100%;
-            background-color: #3737c786;
-            padding-top: 13px;
-            padding-bottom: 13px;
-            border-radius: 15px;
-        }
-        main{
-            width: 85%;
-            height: 100vh;
-            display:flex;
-            flex-direction:column;
-        }
+body {
+  display: flex;
+  background-color: #f1f7ff;
+  min-height: 100vh;
+  margin: 0;
+  font-size: 16px;
+}
 
-        main i{
-            font-size:25px;
-            margin:10px;
-        }
-        h1{
-            text-align:right;
-            margin-top: 10px;
-            font-size:20px;
-            margin-right:10px;
-            margin-bottom: 20px;
-        }
+aside {
+  width: 250px;
+  background-color: #424242;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  height: 100vh;
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
 
 
-        h3{
-            font-size:20px;
-        }
+h2 {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+
+ul {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 30px;
+}
+
+ul li:hover {
+  transform: scale(1.05);
+}
+
+ul li a:hover {
+  background-color: #229799;
+}
+
+/* Icon styles */
+i {
+  font-size: 1.5rem;
+}
+
+#out {
+  text-decoration: none;
+  color: white;
+  background-color: #e74c3c;
+  padding: 12px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+#out:hover {
+  background-color: #c0392b;
+}
+
+main {
+  margin-left: 260px;
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+main i {
+  font-size: 25px;
+  margin: 10px;
+}
+
+h1 {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
 .sort {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap:20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-form{
-    width: 40%;
-    margin-left:20px;
-}
-.look {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    height:35px;
-    margin-left:20px;
 
-    
+
+
+.sort .look {
+  width: 100%;
+  margin-left: 20px;
+  padding: 20px;
 }
 
 .look h3 {
-    margin-right: 10px; 
+  margin-bottom: 15px;
 }
 
 select {
-    width: 35%;
-    height: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+#search {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #229799;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+#search:hover {
+  background-color: #1a7f6e;
 }
 
-#search {
-    width: 30%;
-    height: 100%;
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: #424242;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+td {
+  border-top: 1px solid #e4e4e4;
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #e1f5fe;
+}
+
+td img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+td p {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+#enstock {
+  color: #059212;
+  background-color: #e8f8e8;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+#epuisé {
+  color: #e74c3c;
+  background-color: #f9e6e6;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+td a {
+  color: #2d3e50;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+td a:hover {
+  color: #229799;
+}
+
+td a:active {
+  color: #0a6b5d;
+}
+
+#categg {
+  height: 35px;
+  width: 220px;
+}
+
+#welcome {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#add {
+  text-decoration: none;
+  background-color: #229799;
+  color: white;
+  width: 15%;
+  padding: 10px;
+  text-align: center;
+  margin: 30px;
+  font-size: large;
+  border-radius: 10px;
+}
+
+#enstock {
+  color: #059212;
+}
+@media (max-width: 700px) {
+  aside {
+    width: 150px;
+    height: 100vh;
+  }
+  aside ul li a{
     font-size: 15px;
-    font-weight: bold;
-    background-color: #81A263;
-    color: white;
-    cursor: pointer;
-    border: none;
-    border-radius: 20px;
+  }
+  
+
+
 }
-table{
-    margin-top:10px;
-}
-        th{
-            background-color:black;
-            font-size:large;
-            color:white;
-            padding:10px;
-        }
-        td{
-            border-top:1px solid black;
-            background-color:#c8daef;
-            text-align:center;
-            padding:10px;
-            font-size:16px;
-            font-weight:bold;
-        }
-        #categg{
-            height:35px;
-            width: 220px;
-        }
-        #welcome{
-            font-size:50px;
-            text-align:center;
-            margin-bottom:50px;
-        }
-        #add{
-            text-decoration:none;
-            background-color : darkblue;
-            color:white;
-            width: 15%;
-            padding:10px;
-            text-align:center;
-            margin:30px;
-            font-size:large;
-            border-radius:10px;
-        }
-        #enstock{
-            color:#059212;
-        }
-        
     </style>
 </head>
 <?php 
@@ -196,35 +288,34 @@ table{
 
 ?>
 <body>
-    <aside>
-        <h2>Gestion Stock et Produit</h2>
-    <br>
+<aside>
+    <h2>Gestion Stock et Produit</h2>
     <hr>
-    <br>
     <ul>
-        <i class="fa-solid fa-house" id="house" ></i>
-        <li ><a href="main.php" >Tableau de bord</a></li>
-        <i class="fa-solid fa-cart-shopping" id="produit"></i>
-        <li id="selected"><a href="product.php">Produits</a></li>
-        <i class="fa-solid fa-list" id="cate"></i>
-        <li><a href="categorie.php">Categories</a></li>
-        <i class="fa-solid fa-user-tie" id="forn"></i>
-        <li><a href="forniseur.php">Fornisseurs</a></li>
-        <i class="fa-solid fa-store" id="stock"></i>
-        <li><a href="stock.php">Gestion de Stock</a></li>
-
+        <li>
+            <i class="fa-solid fa-house icon" aria-label="Dashboard"></i>
+            <a href="main.php">Tableau de bord</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-cart-shopping icon" aria-label="Products"></i>
+            <a href="product.php">Produits</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-list icon" aria-label="Categories"></i>
+            <a href="categorie.php">Categories</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-user-tie icon" aria-label="Suppliers"></i>
+            <a href="forniseur.php">Fornisseurs</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-store icon" aria-label="Stock Management"></i>
+            <a href="stock.php">Gestion de Stock</a>
+        </li>
     </ul>
-    <a id="out" style='text-decoration : none;
-            color:white;
-            background-color:red;
-            padding:18px;
-            border-radius:15px;
-            position: fixed;
-            bottom:20px;
-            left:100px;
-            font-weight:bold;' href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+    <a id="out" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+</aside>
 
-    </aside>
     <main>
         <h1> <i class="fas fa-user"></i>
      <?php
@@ -237,12 +328,12 @@ table{
             }
         }
         ?></h1>
-        <h2 id="welcome"> <i style='font-size:45px' class="fa-solid fa-cart-shopping"></i> Produits</h2>
+        <h2 id="welcome"> Produits</h2>
         <div class="sort">
             <div class="look">
                 <h3>Sort by Categorie :</h3>
                 <form action="" method="post">
-                    <select id="categg" name="categorie" >
+                    <select  name="categorie" >
                     <option value='All'> Tous les categories </option>
                     <?php
                         $sql = "SELECT * FROM categorie";
@@ -254,8 +345,7 @@ table{
                         }
                     ?>
                     </select>
-            </div>
-            <div class="look">
+            
                 <h3>Sort by Fornisseur :</h3>
                     <select name="fornisseur">
                     <option value='All'>Tous les fornisseurs </option>
