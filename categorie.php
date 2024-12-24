@@ -37,7 +37,7 @@
     color: white;
     padding: 20px;
     text-align: center;
-    position: fixed;
+    position: absolute;
     height: 100vh;
     box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -263,14 +263,18 @@ td a:active {
   border-radius: 10px;
 }
 @media (max-width: 700px) {
-  aside {
-    width: 150px;
-    height: 100vh;
+  main{
+    width: 90%;
   }
-  main {
-    margin-left: 160px;
-    padding: 20px;
-  }
+  table {
+        width: 100%;
+        table-layout: fixed; /* Helps to ensure that columns resize uniformly */
+    }
+
+    td, th {
+        width: 70%; /* Adjust column width for smaller screens */
+        font-size: 0.9rem;
+    }
   ul li a {
     font-size: 0.9rem;
     margin:5px
@@ -281,36 +285,116 @@ td a:active {
   
 }
 }
+.sidebar-hidden {
+    transform: translateX(-250px); /* Move sidebar out of view */
+}
+
+@media (max-width: 768px) {
+    /* Show the hamburger icon on small screens */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide the sidebar on small screens */
+    aside {
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%); /* Initially hidden */
+        transition: transform 0.3s ease;
+    }
+
+    /* Show the sidebar when not hidden */
+    aside.open {
+        transform: translateX(0);
+        color: white;
+    }
+
+    /* Adjust the main content */
+    main {
+        margin-left: 0;
+    }
+}
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle i {
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hamburger Icon Animation: Three lines (default state) */
+.menu-toggle i::before, .menu-toggle i::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+/* Media Queries: For screens smaller than 768px */
+@media (max-width: 768px) {
+  td img {
+  max-width: 50px;
+
+}
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Open/Close Animation */
+    .menu-toggle.open i::before {
+        transform: rotate(45deg) translateY(6px); /* Top line becomes diagonal */
+    }
+
+    .menu-toggle.open i::after {
+        transform: rotate(-45deg) translateY(-6px); /* Bottom line becomes diagonal */
+    }
+
+    .menu-toggle.open i {
+        color: #e74c3c; /* Change color when open (for more visual effect) */
+    }
+
+    .menu-toggle.open i::before, .menu-toggle.open i::after {
+        background-color: #e74c3c; /* Change line color when open */
+    }
+}
+ul a i{
+  color:white;
+}
     </style>
 </head>
 <body>
-<aside>
-    <h2>Gestion Stock et Produit</h2>
+<div id="menu-toggle" class="menu-toggle">
+    <i class="fa fa-bars"></i>
+</div>
+    <aside>
+        <h2>Stock and Product Management</h2>
     <hr>
     <ul>
-        <li>
-            <i class="fa-solid fa-house icon" aria-label="Dashboard"></i>
-            <a href="main.php">Tableau de bord</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-cart-shopping icon" aria-label="Products"></i>
-            <a href="product.php">Produits</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-list icon" aria-label="Categories"></i>
-            <a href="categorie.php">Categories</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-user-tie icon" aria-label="Suppliers"></i>
-            <a href="forniseur.php">Fornisseurs</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-store icon" aria-label="Stock Management"></i>
-            <a href="stock.php">Gestion de Stock</a>
-        </li>
+        <a href="main.php" ><i class="fa-solid fa-house" id="house" ></i></a>
+        <li><a href="main.php" >Dashboard</a></li>
+        <a href="product.php"><i class="fa-solid fa-cart-shopping" id="produit"></i></a>
+        <li><a href="product.php">Products</a></li>
+        <a href="categorie.php"><i class="fa-solid fa-list" id="cate"></i></a>
+        <li><a href="categorie.php">Categories</a></li>
+        <a href="forniseur.php"><i class="fa-solid fa-user-tie" id="forn"></i></a>
+        <li><a href="forniseur.php">Supplier</a></li>
+        <a href="stock.php"><i class="fa-solid fa-store" id="stock"></i></a>
+        <li><a href="stock.php">Stock Management</a></li>
     </ul>
     <a id="out" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-</aside>
+    </aside>
     <main>
         <h1> <i class="fas fa-user"></i>
      <?php
@@ -325,12 +409,12 @@ td a:active {
         }
         ?></h1>
         <h2 id="welcome">Categories</h2>
-        <a href="addcategorie.php" id="add">Ajouter une Categorie</a>        
+        <a href="addcategorie.php" id="add">Add Categorie</a>        
         <table>
             <tr>
-                <th>Id Categorie</th>
-                <th>Titre</th>
-                <th>Nombre de Produit</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Product number</th>
                 <th>Action</th>
             </tr>
             <?php
@@ -365,7 +449,15 @@ td a:active {
         
 
     </main>
-
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.querySelector('aside');
+      
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open'); 
+        menuToggle.classList.toggle('open'); 
+      });
+    </script>
 </body>
 
 </html>

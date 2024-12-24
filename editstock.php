@@ -290,7 +290,7 @@ h3 {
         ?></h1>
             </select>
             <h3>Statu :</h3> <select name="statu" style="width:62% ; height:40px;border-radius:10px; text-align:center;font-size:large;border:none">
-                <option value="livreé">livreé</option>
+                <option value="delivered">livreé</option>
                 <option value="En livraison">En livraison</option>
             </select>
             <input type="submit" value="Edit"id="submit">

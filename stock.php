@@ -37,7 +37,8 @@
     color: white;
     padding: 20px;
     text-align: center;
-    position: fixed;
+    position:  fixed ;
+    left:0px;
     height: 100vh;
     box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -264,11 +265,13 @@ td a:active {
 }
 @media (max-width: 700px) {
   aside {
-    width: 150px;
-    height: 100vh;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    position: relative;
   }
   main {
-    margin-left: 160px;
+    margin-left: 50px;
     padding: 20px;
   }
   ul li a {

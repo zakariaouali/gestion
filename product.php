@@ -57,6 +57,9 @@
             flex-direction: column;
             gap: 10px;
           }
+          ul a i {
+  color: white;
+}
           
           ul li {
             list-style: none;
@@ -140,7 +143,6 @@ h3 {
 
 .sort .look {
   width: 100%;
-  margin-left: 20px;
   padding: 20px;
 }
 
@@ -160,7 +162,7 @@ select {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 #search {
-  width: 100%;
+  width: 99%;
   padding: 10px;
   font-size: 16px;
   background-color: #229799;
@@ -173,21 +175,21 @@ select {
 #search:hover {
   background-color: #1a7f6e;
 }
-
 table {
-  margin-top: 20px;
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed the container */
+    overflow-x: auto; /* Allow horizontal scroll if needed */
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 th {
   background-color: #424242;
   color: white;
-  font-size: 1.1rem;
   padding: 12px;
   text-align: center;
   text-transform: uppercase;
@@ -223,6 +225,7 @@ td p {
   background-color: #e8f8e8;
   padding: 4px 8px;
   border-radius: 20px;
+  width: 100%;
 }
 
 #epuisé {
@@ -230,6 +233,7 @@ td p {
   background-color: #f9e6e6;
   padding: 4px 8px;
   border-radius: 20px;
+  width: 100%;
 }
 
 td a {
@@ -262,25 +266,18 @@ td a:active {
   text-decoration: none;
   background-color: #229799;
   color: white;
-  width: 15%;
+  width: 97%;
   padding: 10px;
   text-align: center;
-  margin: 30px;
-  font-size: large;
+  font-size: 16px;
   border-radius: 10px;
+  margin-left: 20px;
 }
 
 #enstock {
   color: #059212;
 }
-@media (max-width: 1200px) {
-  aside {
-    width: 200px;
-  }
-  main {
-    margin-left: 210px;
-  }
-}
+
 
 @media (max-width: 900px) {
   aside {
@@ -293,7 +290,7 @@ td a:active {
   td:nth-child(6), th:nth-child(6),  /* Fornisseur */
   td:nth-child(7), th:nth-child(7) { /* Categorie */
     display: none;
-}
+}}
 
 @media (max-width: 700px) {
   aside {
@@ -303,83 +300,145 @@ td a:active {
   main {
     margin-left: 160px;
     padding: 20px;
+    width: 50%;
+  }
+  main i {
+    font-size: 20px;
   }
   ul li a {
     font-size: 0.9rem;
     margin:1px
   }
+  table {
+        width: 100%;
+        table-layout: fixed; /* Helps to ensure that columns resize uniformly */
+    }
+
+    td, th {
+        width: 50%; /* Adjust column width for smaller screens */
+        font-size: 0.7rem;
+    }
+    #epuisé {
+     width: 140%;
+}
+#add {
+  width: 90%;
+}
   
 }
 
-@media (max-width: 600px) {
-  aside {
-    width: 100%;
-    height: auto;
-    text-align: center;
-    position: relative;
-  }
-  ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  ul li {
-    margin: 10px;
-  }
-  main {
-    margin: 0;
-    padding: 15px;
-  }
-  table {
-    display: block;
-    overflow-x: auto;
-  }
-  #add, #search, #out {
-    width: 100%;
-    padding: 8px;
-  }
+
+.sidebar-hidden {
+    transform: translateX(-250px); /* Move sidebar out of view */
 }
 
-@media (max-width: 480px) {
-  th, td {
-    padding: 8px;
-  }
-  h2, h1, h3 {
-    font-size: 1.5rem;
-  }
+@media (max-width: 768px) {
+    /* Show the hamburger icon on small screens */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide the sidebar on small screens */
+    aside {
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%); /* Initially hidden */
+        transition: transform 0.3s ease;
+    }
+
+    /* Show the sidebar when not hidden */
+    aside.open {
+        transform: translateX(0);
+        color: white;
+    }
+
+    /* Adjust the main content */
+    main {
+        margin-left: 0;
+    }
+}
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle i {
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hamburger Icon Animation: Three lines (default state) */
+.menu-toggle i::before, .menu-toggle i::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+/* Media Queries: For screens smaller than 768px */
+@media (max-width: 768px) {
+  td img {
+  max-width: 50px;
+
+}
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Open/Close Animation */
+    .menu-toggle.open i::before {
+        transform: rotate(45deg) translateY(6px); /* Top line becomes diagonal */
+    }
+
+    .menu-toggle.open i::after {
+        transform: rotate(-45deg) translateY(-6px); /* Bottom line becomes diagonal */
+    }
+
+    .menu-toggle.open i {
+        color: #e74c3c; /* Change color when open (for more visual effect) */
+    }
+
+    .menu-toggle.open i::before, .menu-toggle.open i::after {
+        background-color: #e74c3c; /* Change line color when open */
+    }
+}
+ul a i{
+  color:white;
 }
     </style>
 </head>
 
 <body>
-<aside>
-    <h2>Gestion Stock et Produit</h2>
+<div id="menu-toggle" class="menu-toggle">
+    <i class="fa fa-bars"></i>
+</div>
+    <aside>
+        <h2>Stock and Product Management</h2>
     <hr>
     <ul>
-        <li>
-            <i class="fa-solid fa-house icon" aria-label="Dashboard"></i>
-            <a href="main.php">Tableau de bord</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-cart-shopping icon" aria-label="Products"></i>
-            <a href="product.php">Produits</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-list icon" aria-label="Categories"></i>
-            <a href="categorie.php">Categories</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-user-tie icon" aria-label="Suppliers"></i>
-            <a href="forniseur.php">Fornisseurs</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-store icon" aria-label="Stock Management"></i>
-            <a href="stock.php">Gestion de Stock</a>
-        </li>
+        <a href="main.php" ><i class="fa-solid fa-house" id="house" ></i></a>
+        <li><a href="main.php" >Dashboard</a></li>
+        <a href="product.php"><i class="fa-solid fa-cart-shopping" id="produit"></i></a>
+        <li><a href="product.php">Products</a></li>
+        <a href="categorie.php"><i class="fa-solid fa-list" id="cate"></i></a>
+        <li><a href="categorie.php">Categories</a></li>
+        <a href="forniseur.php"><i class="fa-solid fa-user-tie" id="forn"></i></a>
+        <li><a href="forniseur.php">Supplier</a></li>
+        <a href="stock.php"><i class="fa-solid fa-store" id="stock"></i></a>
+        <li><a href="stock.php">Stock Management</a></li>
     </ul>
     <a id="out" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-</aside>
-
+    </aside>
     <main>
         <h1> <i class="fas fa-user"></i>
      <?php
@@ -392,13 +451,13 @@ td a:active {
             }
         }
         ?></h1>
-        <h2 id="welcome"> Produits</h2>
+        <h2 id="welcome"> Products</h2>
         <div class="sort">
             <div class="look">
                 <h3>Sort by Categorie :</h3>
                 <form action="" method="post">
                     <select  name="categorie" >
-                    <option value='All'> Tous les categories </option>
+                    <option value='All'> All categories </option>
                     <?php
                         $sql = "SELECT * FROM categorie";
                         $stmt = $db->prepare($sql);
@@ -410,15 +469,15 @@ td a:active {
                     ?>
                     </select>
             
-                <h3>Sort by Fornisseur :</h3>
+                <h3>Sort by Supplier :</h3>
                     <select name="fornisseur">
-                    <option value='All'>Tous les fornisseurs </option>
+                    <option value='All'>All Suppliers </option>
                     <?php
                         $sql = "SELECT * FROM forniseur";
                         $stmt = $db->prepare($sql);
                         $stmt->execute();
                         $r = $stmt->fetchAll();
-                        foreach($r as $row){
+                        foreach($r as $row){ 
                             echo "<option value=".$row["name"].">".$row["name"]."</option>";
                         }
                     ?>
@@ -428,27 +487,29 @@ td a:active {
             </div>
 
         </div>
-        <a href="addproduct.php" id="add">Ajouter un produit</a>        
-        <table>
+        <a href="addproduct.php" id="add">Add Product</a>
+        <div class="tablesection">
+
+          <table>
             <tr>
-                <th>Image</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Quantié en stock</th>
-                <th>Fornisseur</th>
-                <th>Categorie</th>
-                <th>Statu</th>
-                <th>Action</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>stock</th>
+              <th>Supplier</th>
+              <th>Categorie</th>
+              <th>Statu</th>
+              <th>Action</th>
             </tr>
             <?php
                         
-        if(isset($_GET["action"]) && !empty($_GET["action"]) && $_GET["action"] == "delete"){
-        $sql = "DELETE FROM produits WHERE idproduit=?";
+                        if(isset($_GET["action"]) && !empty($_GET["action"]) && $_GET["action"] == "delete"){
+                          $sql = "DELETE FROM produits WHERE idproduit=?";
         $stmt = $db->prepare($sql);
         $stmt->execute([$_GET["id"]]);
                 }
-            if($_SERVER["REQUEST_METHOD"] =="POST"){
+                if($_SERVER["REQUEST_METHOD"] =="POST"){
                 if($_POST["fornisseur"]=="All" && $_POST["categorie"]=="All"){
                     $sql = "SELECT * FROM produits 
                     inner join forniseur on fornisseurid = idforniseur
@@ -457,12 +518,12 @@ td a:active {
                     $stmt->execute();
                     $r = $stmt->fetchAll();
                     foreach($r as $row){
-?>
-                    <tr> <td width='7%'> <img width='100%' src="images/<?php echo $row["image"]?>"> </td>
+                      ?>
+                    <tr> <td > <img  src="images/<?php echo $row["image"]?>"> </td>
                     <td><?php echo $row["nom"]?> </td>
-                    <td width='40%'><?php echo $row["description"]?></td>
+                    <td ><?php echo $row["description"]?></td>
                     <td><?php echo $row["prix"] ."Dh"?></td>
-                    <td width="3%"><?php echo $row["quantite"]?></td> 
+                    <td ><?php echo $row["quantite"]?></td> 
                     <td><?php echo $row["name"]?> </td>
                     <td><?php echo $row["Titre"] ?></td>
                     <td><?php 
@@ -471,22 +532,22 @@ td a:active {
                             $sql3 = "UPDATE produits SET statu=? WHERE idproduit=?";
                             $stmt = $db->prepare($sql3);
                             $stmt->execute([$s,$row["idproduit"]]);
-                            echo "<p id='enstock'>En stock</p>";
-                        }
-                        else{
+                            echo "<p id='enstock'>in stock</p>";
+                          }
+                          else{
                             $s = "Epuisé";
                             $sql3 = "UPDATE produits SET statu=? WHERE idproduit=?";
                             $stmt = $db->prepare($sql3);
                             $stmt->execute([$s,$row["idproduit"]]);
-                            echo "<p style='color:red;' id='epuisé'>Epuisé</p>";
+                            echo "<p style='color:red;' id='epuisé'>Sold out</p>";
                         }
                         ?> </td>
                         <td> <a href="editproduit.php?id=<?php echo $row["idproduit"]?>"><i class='far fa-edit'></i></a>
                         <a href="product.php?id=<?php echo $row["idproduit"]?>&action=delete" onclick="return confirm('You sure want to delete this product?')"><i class='fas fa-trash-alt'></i></a></td>
-                        </tr>;
-                        <?php
+                      </tr>;
+                      <?php
                     }
-                }
+                  }
                 else if($_POST["fornisseur"]=="All" && $_POST["categorie"]==$_POST["categorie"]){
                     $sql = "SELECT * FROM produits 
                     inner join forniseur on fornisseurid = idforniseur
@@ -495,45 +556,46 @@ td a:active {
                     $stmt->execute([$_POST["categorie"]]);
                     $r = $stmt->fetchAll();
                     foreach($r as $row){
-                        ?>
-                    <tr> <td width='7%'> <img width='100%' src="images/<?php echo $row["image"]?>"> </td>
-                        <td><?php echo $row["nom"]?> </td>
-                        <td width='40%'><?php echo $row["description"]?></td>
-                        <td><?php echo $row["prix"] ."Dh"?></td>
-                        <td width='1%'><?php echo $row["quantite"]?></td> 
+                      ?>
+                    <tr> <td > <img  src="images/<?php echo $row["image"]?>"> </td>
+                    <td><?php echo $row["nom"]?> </td>
+                    <td ><?php echo $row["description"]?></td>
+                    <td><?php echo $row["prix"] ."Dh"?></td>
+                        <td ><?php echo $row["quantite"]?></td> 
                         <td> <?php echo $row["name"]?> </td>
                         <td><?php echo $row["Titre"] ?></td>
                         <td><?php if($row["quantite"] >0){
-                            echo "<p id='enstock'>En stock</p>";
+                          echo "<p id='enstock'>En stock</p>";
                         }
                         else{
                             echo "<p style='color:red;' id='epuisé'>Epuisé</p>";
-                        }?> </td>
+                          }?> </td>
                         <td> <a href="editproduit.php?id=<?php echo $row["idproduit"]?>"><i class='far fa-edit'></i></a>
                         <a href="product.php?id=<?php echo $row["idproduit"]?>&action=delete" onclick="return confirm('You sure want to delete this product?')"><i class='fas fa-trash-alt'></i></a></td>
                         </tr>;
                         <?php
                     }
-                }
+                  }
                 else if($_POST["fornisseur"]==$_POST["fornisseur"] && $_POST["categorie"]=="All"){
                     $sql = "SELECT * FROM produits 
                     inner join forniseur on fornisseurid = idforniseur
                     inner join categorie on categorieid = idcategorie WHERE name=?" ;
                     $stmt = $db->prepare($sql);
+                    
                     $stmt->execute([$_POST["fornisseur"]]);
                     $r = $stmt->fetchAll();
                     foreach($r as $row){
-                        ?>
-                    <tr> <td width='7%'> <img width='100%' src="images/<?php echo $row["image"]?>"> </td>
+                      ?>
+                    <tr> <td > <img  src="images/<?php echo $row["image"]?>"> </td>
                     <td><?php echo $row["nom"]?> </td>
-                        <td width='40%'><?php echo $row["description"]?></td>
-                        <td><?php echo $row["prix"] ."Dh"?></td>
-                        <td width='1%'><?php echo $row["quantite"]?></td> 
-                        <td> <?php echo $row["name"]?> </td>
-                        <td><?php echo $row["Titre"] ?></td>
-                        <td><?php if($row["quantite"] >0){
-                            echo "<p id='enstock'>En stock</p>";
-                        }
+                    <td ><?php echo $row["description"]?></td>
+                    <td><?php echo $row["prix"] ."Dh"?></td>
+                    <td ><?php echo $row["quantite"]?></td> 
+                    <td> <?php echo $row["name"]?> </td>
+                    <td><?php echo $row["Titre"] ?></td>
+                    <td><?php if($row["quantite"] >0){
+                      echo "<p id='enstock'>En stock</p>";
+                    }
                         else{
                             echo "<p style='color:red;' id='epuisé'>Epuisé</p>";
                         }?> </td>
@@ -542,42 +604,51 @@ td a:active {
                         </tr>;
                         <?php
                     }
-                }
-                else{
-                    $sql = "SELECT * FROM produits 
+              }
+              else{
+                $sql = "SELECT * FROM produits 
                     inner join forniseur on fornisseurid = idforniseur
                     inner join categorie on categorieid = idcategorie WHERE Titre=? AND name=? ";
                     $stmt = $db->prepare($sql);
                     $stmt->execute([$_POST["categorie"],$_POST["fornisseur"]]);
                     $r = $stmt->fetchAll();
                     foreach($r as $row){
-                        ?>
-                    <tr> <td width='7%'> <img width='100%' src="images/<?php echo $row["image"]?>"> </td>
+                      ?>
+                    <tr> <td > <img  src="images/<?php echo $row["image"]?>"> </td>
                     <td><?php echo $row["nom"]?> </td>
-                        <td width='40%'><?php echo $row["description"]?></td>
-                        <td><?php echo $row["prix"] ."Dh"?></td>
-                        <td width='1%'><?php echo $row["quantite"]?></td> 
-                        <td> <?php echo $row["name"]?> </td>
-                        <td><?php echo $row["Titre"] ?></td>
-                        <td><?php if($row["quantite"] >0){
+                    <td ><?php echo $row["description"]?></td>
+                    <td><?php echo $row["prix"] ."Dh"?></td>
+                    <td ><?php echo $row["quantite"]?></td> 
+                    <td> <?php echo $row["name"]?> </td>
+                    <td><?php echo $row["Titre"] ?></td>
+                    <td><?php if($row["quantite"] >0){
                             echo "<p id='enstock'>En stock</p>";
-                        }
-                        else{
+                          }
+                          else{
                             echo "<p style='color:red;' id='epuisé'>Epuisé</p>";
-                        }?> </td>
+                          }?> </td>
                         <td> <a href="editproduit.php?id=<?php echo $row["idproduit"]?>"><i class='far fa-edit'></i></a>
                         <a href="product.php?id=<?php echo $row["idproduit"]?>&action=delete" onclick="return confirm('You sure want to delete this product?')"><i class='fas fa-trash-alt'></i></a></td>
-                        </tr>;
+                      </tr>;
                         <?php
                     }
                 }
-            }
+              }
 ?>
         </table>
+      </div>        
         
-
+        
     </main>
-
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.querySelector('aside');
+      
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open'); 
+        menuToggle.classList.toggle('open'); 
+      });
+    </script>
 </body>
 
 </html>

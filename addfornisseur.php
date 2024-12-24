@@ -125,7 +125,7 @@ main {
 
 /* Form Styling */
 form {
-    background: linear-gradient(135deg, #b8e0d2, #e6f9f2);
+    background: linear-gradient(135deg,rgb(55, 55, 55),rgb(244, 244, 244));
     width: 50%;
     padding: 40px;
     margin: 5% auto;
@@ -179,13 +179,13 @@ form input:focus, form select:focus, form textarea:focus {
 /* Form Title and Labels */
 h1 {
     text-align: center;
-    color: #20395a;
+    color: white;
     font-size: 2rem;
     margin-bottom: 20px;
 }
 
 h3 {
-    color: #20395a;
+    color: white;
     font-size: 1.2rem;
     text-align: left;
 }
@@ -219,7 +219,7 @@ h3 {
     align-items:center;
     text-align:center;
     gap: 10px;
-    margin-bottom: 60%;
+    margin-bottom: 20%;
 }
 }
 
@@ -240,49 +240,99 @@ h3 {
         width: 99%;
     }
 }
-s
+.sidebar-hidden {
+    transform: translateX(-250px); /* Move sidebar out of view */
+}
+
+@media (max-width: 768px) {
+    /* Show the hamburger icon on small screens */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide the sidebar on small screens */
+    aside {
+        width: 100%;
+        transform: translateX(-100%); /* Initially hidden */
+        transition: transform 0.3s ease;
+    }
+
+    /* Show the sidebar when not hidden */
+    aside.open {
+        transform: translateX(0);
+        color: white;
+    }
+
+    /* Adjust the main content */
+    main {
+        margin-left: 0;
+    }
+    form{
+        width: 100%;
+    }
+}
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle i {
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hamburger Icon Animation: Three lines (default state) */
+.menu-toggle i::before, .menu-toggle i::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+ul a i {
+    color:white;
+}
     </style>
 </head>
 <body>
 
 <aside>
-    <h2>Gestion Stock et Produit</h2>
+        <h2>Stock and Product Management</h2>
     <hr>
     <ul>
-        <li>
-            <i class="fa-solid fa-house icon" aria-label="Dashboard"></i>
-            <a href="main.php">Tableau de bord</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-cart-shopping icon" aria-label="Products"></i>
-            <a href="product.php">Produits</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-list icon" aria-label="Categories"></i>
-            <a href="categorie.php">Categories</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-user-tie icon" aria-label="Suppliers"></i>
-            <a href="forniseur.php">Fornisseurs</a>
-        </li>
-        <li>
-            <i class="fa-solid fa-store icon" aria-label="Stock Management"></i>
-            <a href="stock.php">Gestion de Stock</a>
-        </li>
+        <a href="main.php" ><i class="fa-solid fa-house" id="house" ></i></a>
+        <li><a href="main.php" >Dashboard</a></li>
+        <a href="product.php"><i class="fa-solid fa-cart-shopping" id="produit"></i></a>
+        <li><a href="product.php">Products</a></li>
+        <a href="categorie.php"><i class="fa-solid fa-list" id="cate"></i></a>
+        <li><a href="categorie.php">Categories</a></li>
+        <a href="forniseur.php"><i class="fa-solid fa-user-tie" id="forn"></i></a>
+        <li><a href="forniseur.php">Supplier</a></li>
+        <a href="stock.php"><i class="fa-solid fa-store" id="stock"></i></a>
+        <li><a href="stock.php">Stock Management</a></li>
     </ul>
     <a id="out" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-</aside>
+    </aside>
     <main>
         <div class="back"> 
             <a href="forniseur.php"><i class="fas fa-backward"></i></a>
-            <a href="forniseur.php"><h2>Fornisseur</h2></a>
+            <a href="forniseur.php"><h2>Supplier</h2></a>
         </div>
         <form action="" method="post">
-        <h1>Ajouter un Fornisseur</h1>
-            <h3>Nom :</h3> <input type="text" name="nom" >
-            <h3>email :</h3> <input type="text" name="email" >
-            <h3>adresse :</h3> <input type="text" name="adresse" >
-            <input type="submit" value="Ajouter"id="submit">
+        <h1>Add Supplier</h1>
+            <h3>Name</h3> <input type="text" name="nom" >
+            <h3>Email</h3> <input type="text" name="email" >
+            <h3>Adrress</h3> <input type="text" name="adresse" >
+            <input type="submit" value="Add"id="submit">
         </form>
     </main>
     <?php
@@ -302,6 +352,15 @@ s
             }
             }
     ?>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('aside');
+
+        menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open'); 
+        menuToggle.classList.toggle('open'); 
+    });
+</script>
 </body>
 
 </html>
